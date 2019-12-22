@@ -14,6 +14,9 @@ repositories {
 
 dependencies {
     testImplementation("org.junit.jupiter:junit-jupiter:5.5.2")
+    testImplementation("org.junit.platform:junit-platform-launcher:1.5.2")
+    testImplementation("org.junit.platform:junit-platform-reporting:1.5.2")
+    testImplementation("org.junit.platform:junit-platform-engine:1.5.2")
 }
 
 test {
@@ -23,9 +26,9 @@ test {
     useJUnitPlatform() {
         includeEngines 'junit-jupiter'
         excludeEngines 'junit-vintage'
-        testLogging {
-            events "passed", "skipped", "failed"
-        }
+//        testLogging {
+//            events "passed", "skipped", "failed"
+//        }
 
     }
 }
