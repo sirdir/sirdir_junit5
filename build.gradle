@@ -17,6 +17,9 @@ dependencies {
 }
 
 test {
+    testLogging {
+        showStandardStreams = true
+    }
     useJUnitPlatform() {
         includeEngines 'junit-jupiter'
         excludeEngines 'junit-vintage'
