@@ -26,7 +26,12 @@ public class TestExample {
     @Test
     void assumePass() {
         assumeTrue(true);
-        assert 1 > 2 : "some old fashion java asssertion fail";
+    }
+
+    @Test
+    void assumePassButTestFails() {
+        assumeTrue(true);
+        assert 1 > 2 : "some old fashion java assertion fail";
     }
 
     @Test
