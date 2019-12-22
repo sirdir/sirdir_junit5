@@ -1,0 +1,28 @@
+plugins {
+    id 'java'
+    id 'idea'
+}
+
+group 'dev.sirdir'
+version '1.0-SNAPSHOT'
+
+sourceCompatibility = 1.8
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    testImplementation("org.junit.jupiter:junit-jupiter:5.5.2")
+}
+
+test {
+    useJUnitPlatform() {
+        includeEngines 'junit-jupiter'
+        excludeEngines 'junit-vintage'
+        testLogging {
+            events "passed", "skipped", "failed"
+        }
+
+    }
+}
