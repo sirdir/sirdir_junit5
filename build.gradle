@@ -6,7 +6,7 @@ plugins {
 group 'dev.sirdir'
 version '1.0-SNAPSHOT'
 
-sourceCompatibility = 1.11
+sourceCompatibility = 1.8
 
 repositories {
     mavenCentral()
@@ -14,8 +14,6 @@ repositories {
 
 dependencies {
     testImplementation("org.junit.jupiter:junit-jupiter:5.5.2")
-    testImplementation("org.junit.platform:junit-platform-launcher:1.5.2")
-    testImplementation("org.junit.platform:junit-platform-reporting:1.5.2")
     testImplementation("org.junit.platform:junit-platform-engine:1.5.2")
 }
 
@@ -24,11 +22,18 @@ test {
         showStandardStreams = true
     }
     useJUnitPlatform() {
-        includeEngines 'junit-jupiter'
-        excludeEngines 'junit-vintage'
 //        testLogging {
 //            events "passed", "skipped", "failed"
 //        }
-
     }
+    systemProperties = [
+            'junit.jupiter.execution.parallel.enabled': 'true',
+//            'junit.jupiter.execution.parallel.config.dynamic.factor': '1',
+//            'junit.jupiter.execution.parallel.mode.default': 'same_thread',
+            'junit.jupiter.execution.parallel.mode.default': 'concurrent',
+//            'junit.jupiter.execution.parallel.mode.classes.default': 'same_thread',
+            'junit.jupiter.execution.parallel.mode.classes.default': 'concurrent',
+            'junit.jupiter.execution.parallel.config.fixed.parallelism': '10'
+    ]
 }
+
