@@ -9,12 +9,20 @@ import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.TestInstance;
 import org.junit.jupiter.api.TestInstance.Lifecycle;
+import org.junit.jupiter.api.parallel.Execution;
+import org.junit.jupiter.api.parallel.ExecutionMode;
 
-@TestInstance(Lifecycle.PER_METHOD)
+@TestInstance(Lifecycle.PER_CLASS)
+/*
+test classes that use the Lifecycle.PER_CLASS mode,
+test methods in such test classes are only executed concurrently
+if the @Execution(CONCURRENT) annotation is present on the test class or method.
+ */
+//@Execution(ExecutionMode.CONCURRENT)
 public abstract class BaseParallel {
 
-    public static Map<String, Long> methodMap = new ConcurrentHashMap<>();
-    public static Map<String, Long> cycleMethodMap = new ConcurrentHashMap<>();
+    public Map<String, Long> methodMap = new ConcurrentHashMap<>();
+    public Map<String, Long> cycleMethodMap = new ConcurrentHashMap<>();
     public static AtomicInteger counterBA = new AtomicInteger(0);
     public static AtomicInteger counterBE = new AtomicInteger(0);
     public static AtomicInteger counterAA = new AtomicInteger(0);
@@ -23,7 +31,7 @@ public abstract class BaseParallel {
     public static final long start = System.nanoTime();
 
     @BeforeAll
-    public static void setUp() {
+    public void setUp() {
         counterBA.incrementAndGet();
         logMe("setUp_"+ counterBA.get());
     }
@@ -41,7 +49,7 @@ public abstract class BaseParallel {
     }
 
     @AfterAll
-    public static void tearDown() {
+    public void tearDown() {
         counterAA.incrementAndGet();
         logMe("tearDown_" + counterAA.get());
         methodMap.forEach((k, v) -> {System.out.print(k); System.out.print(" = ");System.out.println(v);});
@@ -75,7 +83,7 @@ public abstract class BaseParallel {
         methodMap.put(Thread.currentThread().getStackTrace()[2].getMethodName(), Thread.currentThread().getId());
     }
 
-    static void logMe(String methodName) {
+    void logMe(String methodName) {
         cycleMethodMap.put(methodName, Thread.currentThread().getId());
     }
 }
