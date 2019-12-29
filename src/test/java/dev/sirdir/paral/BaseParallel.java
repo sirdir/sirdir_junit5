@@ -79,7 +79,7 @@ public abstract class BaseParallel {
 //    }
 
     void logMe(Class<? extends BaseParallel> xca) {
-        System.out.println(Thread.currentThread().getStackTrace()[2].getMethodName() + " delta " + (System.nanoTime() - start));
+        System.out.println(Thread.currentThread().getStackTrace()[2].getMethodName() + " delta " + (System.nanoTime() - start) + " " + Thread.currentThread().getId());
         methodMap.put(Thread.currentThread().getStackTrace()[2].getMethodName(), Thread.currentThread().getId());
     }
 

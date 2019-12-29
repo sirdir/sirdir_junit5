@@ -1,6 +1,6 @@
 package dev.sirdir.paral;
 
-public class Test2 extends BaseParallel {
+public class SimpleTest2 extends BaseParallel {
 
     @TestParallel
     void test2_1() {
