@@ -6,20 +6,17 @@ import org.junit.jupiter.api.parallel.ExecutionMode;
 
 public class Test1 extends BaseParallel {
 
-    @Test
-    @Execution(ExecutionMode.CONCURRENT)
+    @TestParallel
     void test1_1() {
         logMe(this.getClass());
     }
 
-    @Test
-    @Execution(ExecutionMode.CONCURRENT)
+    @TestParallel
     void test1_2() {
         logMe(this.getClass());
     }
 
-    @Execution(ExecutionMode.CONCURRENT)
-    @Test
+    @TestParallel
     void test1_3() {
         logMe(this.getClass());
     }
