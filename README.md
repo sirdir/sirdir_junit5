@@ -1,9 +1,9 @@
 
 Linux
 
-* ```.gradlew clean test --tests '*.paral.*'```
-* ```.gradlew clean test --tests '*.paral.SimpleTest*'```
-* ```.gradlew clean test --tests '*.paral.TestWithParams'```
+* ```./gradlew clean test --tests '*.paral.*'```
+* ```./gradlew clean test --tests '*.paral.SimpleTest*'```
+* ```./gradlew clean test --tests '*.paral.TestWithParams'```
 
 
 Windows
